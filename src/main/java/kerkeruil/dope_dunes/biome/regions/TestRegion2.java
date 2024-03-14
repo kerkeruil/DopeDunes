@@ -15,9 +15,10 @@
  * along with this program; if not, write to the Free Software Foundation,
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
-package kerkeruil.dope_dunes;
+package kerkeruil.dope_dunes.biome.regions;
 
 import com.mojang.datafixers.util.Pair;
+import kerkeruil.dope_dunes.registry.ModBiomes;
 import terrablender.api.Region;
 import terrablender.api.RegionType;
 
@@ -42,7 +43,7 @@ public class TestRegion2 extends Region
         this.addModifiedVanillaOverworldBiomes(mapper, builder -> {
             // Simple example:
             // Replace the Vanilla desert with our hot_red biome
-            builder.replaceBiome(BiomeKeys.DESERT, TestBiomes.HOT_RED);
+            builder.replaceBiome(BiomeKeys.DESERT, ModBiomes.HOT_RED);
         });
     }
 }

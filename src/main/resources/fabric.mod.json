@@ -12,7 +12,7 @@
 		"sources": "https://github.com/FabricMC/fabric-example-mod"
 	},
 	"license": "CC0-1.0",
-	"icon": "assets/dope-dunes/icon.png",
+	"icon": "assets/dope_dunes/icon.png",
 	"environment": "*",
 	"entrypoints": {
 		"main": [
@@ -22,7 +22,7 @@
 			"kerkeruil.dope_dunes.DopeDunesDataGenerator"
 		],
 		"terrablender": [
-			"kerkeruil.dope_dunes.DopeDunes"
+			"kerkeruil.dope_dunes.biome.ModTerraBlenderAPI"
 		]
 	},
 	"mixins": [

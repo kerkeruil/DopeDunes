@@ -15,27 +15,28 @@
  * along with this program; if not, write to the Free Software Foundation,
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
-package kerkeruil.dope_dunes;
+package kerkeruil.dope_dunes.biome;
 
+import kerkeruil.dope_dunes.registry.ModBiomes;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.world.gen.surfacebuilder.MaterialRules;
 
-public class TestSurfaceRuleData
+public class ModSurfaceRuleData
 {
     private static final MaterialRules.MaterialRule DIRT = makeStateRule(Blocks.DIRT);
     private static final MaterialRules.MaterialRule GRASS_BLOCK = makeStateRule(Blocks.GRASS_BLOCK);
     private static final MaterialRules.MaterialRule RED_TERRACOTTA = makeStateRule(Blocks.RED_TERRACOTTA);
     private static final MaterialRules.MaterialRule BLUE_TERRACOTTA = makeStateRule(Blocks.BLUE_TERRACOTTA);
 
-    protected static MaterialRules.MaterialRule makeRules()
+    public static MaterialRules.MaterialRule makeRules()
     {
         MaterialRules.MaterialCondition isAtOrAboveWaterLevel = MaterialRules.water(-1, 0);
         MaterialRules.MaterialRule grassSurface = MaterialRules.sequence(MaterialRules.condition(isAtOrAboveWaterLevel, GRASS_BLOCK), DIRT);
 
         return MaterialRules.sequence(
-            MaterialRules.condition(MaterialRules.biome(TestBiomes.HOT_RED), RED_TERRACOTTA),
-            MaterialRules.condition(MaterialRules.biome(TestBiomes.COLD_BLUE), BLUE_TERRACOTTA),
+            MaterialRules.condition(MaterialRules.biome(ModBiomes.HOT_RED), RED_TERRACOTTA),
+            MaterialRules.condition(MaterialRules.biome(ModBiomes.COLD_BLUE), BLUE_TERRACOTTA),
 
             // Default to a grass and dirt surface
             MaterialRules.condition(MaterialRules.STONE_DEPTH_FLOOR, grassSurface)

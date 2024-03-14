@@ -15,9 +15,10 @@
  * along with this program; if not, write to the Free Software Foundation,
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
-package kerkeruil.dope_dunes;
+package kerkeruil.dope_dunes.biome.regions;
 
 import com.mojang.datafixers.util.Pair;
+import kerkeruil.dope_dunes.registry.ModBiomes;
 import terrablender.api.ParameterUtils.Continentalness;
 import terrablender.api.ParameterUtils.Depth;
 import terrablender.api.ParameterUtils.Erosion;
@@ -58,7 +59,7 @@ public class TestRegion1 extends Region
             .erosion(Erosion.EROSION_0, Erosion.EROSION_1)
             .depth(Depth.SURFACE, Depth.FLOOR)
             .weirdness(Weirdness.MID_SLICE_NORMAL_ASCENDING, Weirdness.MID_SLICE_NORMAL_DESCENDING)
-            .build().forEach(point -> builder.add(point, TestBiomes.COLD_BLUE));
+            .build().forEach(point -> builder.add(point, ModBiomes.COLD_BLUE));
 
         // Add our points to the mapper
         builder.build().forEach(mapper);
