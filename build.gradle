@@ -18,6 +18,10 @@ repositories {
 	// for more information about repositories.
 	maven { url = 'https://maven.minecraftforge.net/' }
 	maven {url = "https://maven.kyrptonaught.dev"}
+	maven {
+		name = 'TerraformersMC'
+		url = 'https://maven.terraformersmc.com/'
+	}
 
 
 }
@@ -39,6 +43,9 @@ dependencies {
 
 	modImplementation "net.kyrptonaught:customportalapi:${project.portal_version}"
 	include "net.kyrptonaught:customportalapi:${project.portal_version}"
+
+	modImplementation "com.terraformersmc:biolith:${biolith_version}"
+	modImplementation "com.terraformersmc.terraform-api:terraform-surfaces-api-v1:${terraform_surfaces_api_version}"
 	// Uncomment the following line to enable the deprecated Fabric API modules.
 	// These are included in the Fabric API production distribution and allow you to update your mod to the latest modules at a later more convenient time.
 

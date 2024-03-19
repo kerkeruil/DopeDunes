@@ -20,9 +20,6 @@
 		],
 		"fabric-datagen": [
 			"kerkeruil.dope_dunes.DopeDunesDataGenerator"
-		],
-		"terrablender": [
-			"kerkeruil.dope_dunes.biome.ModTerraBlenderAPI"
 		]
 	},
 	"mixins": [

@@ -1,6 +1,7 @@
 package kerkeruil.dope_dunes.util;
 
 import kerkeruil.dope_dunes.DopeDunes;
+import kerkeruil.dope_dunes.registry.ModBiomes;
 import net.kyrptonaught.customportalapi.api.CustomPortalBuilder;
 import net.minecraft.block.Blocks;
 import net.minecraft.item.Items;
@@ -8,7 +9,7 @@ import net.minecraft.util.Identifier;
 
 public class ModRegistries {
     public static void registerModStuff(){
-        createPortal();
+        ModBiomes.init();
     }
     private static void createPortal() {
         CustomPortalBuilder.beginPortal()
