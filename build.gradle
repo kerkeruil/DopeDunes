@@ -17,6 +17,8 @@ repositories {
 	// See https://docs.gradle.org/current/userguide/declaring_repositories.html
 	// for more information about repositories.
 	maven { url = 'https://maven.minecraftforge.net/' }
+	maven {url = "https://maven.kyrptonaught.dev"}
+
 
 }
 
@@ -35,6 +37,8 @@ dependencies {
 	modImplementation "com.github.glitchfiend:TerraBlender-fabric:${minecraft_version}-${terrablender_version}"
 
 
+	modImplementation "net.kyrptonaught:customportalapi:${project.portal_version}"
+	include "net.kyrptonaught:customportalapi:${project.portal_version}"
 	// Uncomment the following line to enable the deprecated Fabric API modules.
 	// These are included in the Fabric API production distribution and allow you to update your mod to the latest modules at a later more convenient time.
 

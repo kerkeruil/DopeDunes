@@ -29,6 +29,12 @@ public class ModSurfaceRuleData
     private static final MaterialRules.MaterialRule RED_TERRACOTTA = makeStateRule(Blocks.RED_TERRACOTTA);
     private static final MaterialRules.MaterialRule BLUE_TERRACOTTA = makeStateRule(Blocks.BLUE_TERRACOTTA);
 
+    private static final MaterialRules.MaterialRule SAND = makeStateRule(Blocks.SAND);
+    private static final MaterialRules.MaterialRule SAND_STONE = makeStateRule(Blocks.SANDSTONE);
+    private static final MaterialRules.MaterialRule MAGMA_BLOCK = makeStateRule(Blocks.MAGMA_BLOCK);
+
+
+
     public static MaterialRules.MaterialRule makeRules()
     {
         MaterialRules.MaterialCondition isAtOrAboveWaterLevel = MaterialRules.water(-1, 0);
@@ -37,6 +43,14 @@ public class ModSurfaceRuleData
         return MaterialRules.sequence(
             MaterialRules.condition(MaterialRules.biome(ModBiomes.HOT_RED), RED_TERRACOTTA),
             MaterialRules.condition(MaterialRules.biome(ModBiomes.COLD_BLUE), BLUE_TERRACOTTA),
+
+            MaterialRules.sequence(MaterialRules.condition(MaterialRules.biome(ModBiomes.SHADY_SANDS),
+                            MaterialRules.condition(MaterialRules.STONE_DEPTH_FLOOR, SAND)),
+                            MaterialRules.condition(MaterialRules.STONE_DEPTH_CEILING, SAND_STONE),
+                            MaterialRules.condition(MaterialRules.hole(), MAGMA_BLOCK)
+            ),
+
+
 
             // Default to a grass and dirt surface
             MaterialRules.condition(MaterialRules.STONE_DEPTH_FLOOR, grassSurface)

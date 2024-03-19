@@ -15,7 +15,7 @@
  * along with this program; if not, write to the Free Software Foundation,
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
-package kerkeruil.dope_dunes.biome.regions;
+package kerkeruil.dope_dunes.biome.region;
 
 import com.mojang.datafixers.util.Pair;
 import kerkeruil.dope_dunes.registry.ModBiomes;
@@ -36,8 +36,6 @@ import net.minecraft.registry.RegistryKey;
 import net.minecraft.util.Identifier;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.source.util.MultiNoiseUtil;
-
-import static terrablender.api.ParameterUtils.*;
 
 public class TestRegion1 extends Region
 {

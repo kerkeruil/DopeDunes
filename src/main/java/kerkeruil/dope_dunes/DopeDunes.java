@@ -1,5 +1,6 @@
 package kerkeruil.dope_dunes;
 
+import kerkeruil.dope_dunes.util.ModRegistries;
 import net.fabricmc.api.ModInitializer;
 
 import net.minecraft.util.Identifier;
@@ -23,6 +24,6 @@ public class DopeDunes implements ModInitializer {
 		// Proceed with mild caution.
 
 		LOGGER.info("Starting the dope dunes generation.");
+		ModRegistries.registerModStuff();
 	}
-
 }
