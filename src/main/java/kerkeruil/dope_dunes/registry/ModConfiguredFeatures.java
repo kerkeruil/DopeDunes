@@ -20,18 +20,21 @@ public class ModConfiguredFeatures {
     public static final RegistryKey<ConfiguredFeature<?, ?>> RADIOACTIVE_ORE_KEY = createRegistryKey("radioactive_ore");
 
     public static void populate(FabricDynamicRegistryProvider.Entries entries) {
-
-    }
-
-    public static void bootstrap(Registerable<ConfiguredFeature<?, ?>> context) {
-        System.out.println("IS CALEED KERKERUIL");
         RuleTest stoneReplaceables = new TagMatchRuleTest(BlockTags.STONE_ORE_REPLACEABLES);
 
-        List<OreFeatureConfig.Target> overworldRadioactiveOres =
-                List.of(OreFeatureConfig.createTarget(stoneReplaceables, ModBlocks.RADIOACTIVE_ORE.getDefaultState()));
+       entries.add(RADIOACTIVE_ORE_KEY, configureFeature(Feature.ORE, new OreFeatureConfig(stoneReplaceables, ModBlocks.RADIOACTIVE_ORE.getDefaultState(), 14)));
 
-        register(context, RADIOACTIVE_ORE_KEY, Feature.ORE, new OreFeatureConfig(overworldRadioactiveOres, 12));
+
     }
+
+//    public static void bootstrap(Registerable<ConfiguredFeature<?, ?>> context) {
+//        RuleTest stoneReplaceables = new TagMatchRuleTest(BlockTags.STONE_ORE_REPLACEABLES);
+//
+//        List<OreFeatureConfig.Target> overworldRadioactiveOres =
+//                List.of(OreFeatureConfig.createTarget(stoneReplaceables, ModBlocks.RADIOACTIVE_ORE.getDefaultState()));
+//
+//        register(context, RADIOACTIVE_ORE_KEY, Feature.ORE, new OreFeatureConfig(overworldRadioactiveOres, 12));
+//    }
 
 
     public static RegistryKey<ConfiguredFeature<?, ?>> createRegistryKey(String name) {

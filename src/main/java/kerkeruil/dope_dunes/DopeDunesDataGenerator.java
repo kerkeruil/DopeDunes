@@ -27,9 +27,8 @@ public class DopeDunesDataGenerator implements DataGeneratorEntrypoint {
 
 	}
 
-	@Override
-	public void buildRegistry(RegistryBuilder registryBuilder) {
-		ModDynamicRegistryProvider.buildRegistry(registryBuilder);
-	}
+//	@Override
+//	public void buildRegistry(RegistryBuilder registryBuilder) {
+//	}
 
 }

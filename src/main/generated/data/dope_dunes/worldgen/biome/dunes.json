@@ -59,9 +59,7 @@
       "minecraft:disk_clay",
       "minecraft:disk_gravel"
     ],
-    [
-      "dope_dunes:radioactive_ore_placed"
-    ],
+    [],
     [
       "minecraft:spring_water",
       "minecraft:spring_lava"

@@ -15,12 +15,12 @@ import net.minecraft.world.biome.BiomeEffects;
 import net.minecraft.world.biome.GenerationSettings;
 import net.minecraft.world.biome.SpawnSettings;
 import net.minecraft.world.gen.feature.DefaultBiomeFeatures;
-import net.minecraft.world.gen.feature.PlacedFeature;
 
 @SuppressWarnings("UnstableApiUsage")
 public class ModBiomes {
     public static final RegistryKey<Biome> DUNES = RegistryKey.of(RegistryKeys.BIOME, Identifier.of(DopeDunes.MOD_ID, "dunes"));
     public static final RegistryKey<Biome> LUSH_DESERT = RegistryKey.of(RegistryKeys.BIOME, Identifier.of(DopeDunes.MOD_ID, "lush_desert"));
+
 
     public static void populate(FabricDynamicRegistryProvider.Entries entries) {
         entries.add(DUNES, DunesBiomes.create(entries));

@@ -32,11 +32,6 @@ public class DunesBiomes {
     private static GenerationSettings createGenerationSettings(FabricDynamicRegistryProvider.Entries entries) {
         GenerationSettings.LookupBackedBuilder builder = new GenerationSettings.LookupBackedBuilder(entries.placedFeatures(), entries.configuredCarvers());
 
-
-
-        builder.feature(GenerationStep.Feature.UNDERGROUND_DECORATION, entries.placedFeatures().getOrThrow(ModPlacedFeatures.RADIOACTIVE_ORE_PLACED_KEY));
-
-
         ModBiomes.addBasicFeatures(builder);
         DefaultBiomeFeatures.addDefaultOres(builder);
         DefaultBiomeFeatures.addDefaultDisks(builder);

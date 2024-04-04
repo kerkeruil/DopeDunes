@@ -1,6 +1,7 @@
 package kerkeruil.dope_dunes.world;
 
 import kerkeruil.dope_dunes.DopeDunes;
+import kerkeruil.dope_dunes.block.ModBlocks;
 import kerkeruil.dope_dunes.registry.ModConfiguredFeatures;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricDynamicRegistryProvider;
 import net.minecraft.block.BlockState;
@@ -77,6 +78,18 @@ public class ModPlacedFeatures {
                 SquarePlacementModifier.of(),
                 PlacedFeatures.MOTION_BLOCKING_HEIGHTMAP,
                 BlockFilterPlacementModifier.of(ON_DIRT_OR_SAND)));
+
+        entries.add(RADIOACTIVE_ORE_PLACED_KEY, placeFeature(entries, ModConfiguredFeatures.RADIOACTIVE_ORE_KEY,
+                ModOrePlacement.modifiersWithCount(10, // Veins per Chunk
+                        // Distribution between -80 and 80
+                        HeightRangePlacementModifier.uniform(YOffset.fixed(-80), YOffset.fixed(80)))
+        ));
+//
+//        register(context, RADIOACTIVE_ORE_PLACED_KEY, configuredFeatureRegistryEntryLookup.getOrThrow(RADIOACTIVE_ORE_KEY),
+//                ModOrePlacement.modifiersWithCount(10, // Veins per Chunk
+//                        // Distribution between -80 and 80
+//                        HeightRangePlacementModifier.uniform(YOffset.fixed(-80), YOffset.fixed(80))));
+
     }
 
     private static DataPool.Builder<BlockState> createStatePoolBuilder() {
@@ -91,14 +104,5 @@ public class ModPlacedFeatures {
 
     private static PlacedFeature placeFeature(FabricDynamicRegistryProvider.Entries entries, RegistryKey<ConfiguredFeature<?, ?>> feature, List<PlacementModifier> list) {
         return new PlacedFeature(entries.ref(feature), list);
-    }
-
-    public static void bootstrap(Registerable<PlacedFeature> context) {
-        var configuredFeatureRegistryEntryLookup = context.getRegistryLookup(RegistryKeys.CONFIGURED_FEATURE);
-
-        register(context, RADIOACTIVE_ORE_PLACED_KEY, configuredFeatureRegistryEntryLookup.getOrThrow(ModConfiguredFeatures.RADIOACTIVE_ORE_KEY),
-                ModOrePlacement.modifiersWithCount(10, // Veins per Chunk
-                        // Distribution between -80 and 80
-                        HeightRangePlacementModifier.uniform(YOffset.fixed(-80), YOffset.fixed(80))));
     }
 }

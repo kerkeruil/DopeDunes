@@ -19,13 +19,13 @@ public class ModDynamicRegistryProvider extends FabricDynamicRegistryProvider {
         super(output, registriesFuture);
     }
 
-    public static void buildRegistry(RegistryBuilder registryBuilder) {
-        // worldgen
-        registryBuilder.addRegistry(RegistryKeys.CONFIGURED_FEATURE, ModConfiguredFeatures::bootstrap);
-        registryBuilder.addRegistry(RegistryKeys.PLACED_FEATURE, ModPlacedFeatures::bootstrap);
-//        registryBuilder.addRegistry(RegistryKeys.BIOME, ModBiomzes::bootstrap);
-        registryBuilder.addRegistry(RegistryKeys.DIMENSION_TYPE, ModDimensions::bootstrapType);
-    }
+//    public static void buildRegistry(RegistryBuilder registryBuilder) {
+//        // worldgen
+//        registryBuilder.addRegistry(RegistryKeys.CONFIGURED_FEATURE, ModConfiguredFeatures::bootstrap);
+//        registryBuilder.addRegistry(RegistryKe  ys.PLACED_FEATURE, ModPlacedFeatures::bootstrap);
+//        registryBuilder.addRegistry(RegistryKeys.BIOME, ModBiomes::bootstrap);
+//        registryBuilder.addRegistry(RegistryKeys.DIMENSION_TYPE, ModDimensions::bootstrapType);
+//    }
 
     @Override
     public void configure(RegistryWrapper.WrapperLookup registries, Entries entries) {
