@@ -1,7 +1,8 @@
 package kerkeruil.dope_dunes.registry;
 
 import kerkeruil.dope_dunes.DopeDunes;
-import kerkeruil.dope_dunes.biome.DunesBiomes;
+import kerkeruil.dope_dunes.world.biome.DunesBiomes;
+import kerkeruil.dope_dunes.world.biome.LushDesertBiomes;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricDynamicRegistryProvider;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.SpawnGroup;
@@ -14,19 +15,16 @@ import net.minecraft.world.biome.BiomeEffects;
 import net.minecraft.world.biome.GenerationSettings;
 import net.minecraft.world.biome.SpawnSettings;
 import net.minecraft.world.gen.feature.DefaultBiomeFeatures;
-
-import java.util.List;
+import net.minecraft.world.gen.feature.PlacedFeature;
 
 @SuppressWarnings("UnstableApiUsage")
 public class ModBiomes {
     public static final RegistryKey<Biome> DUNES = RegistryKey.of(RegistryKeys.BIOME, Identifier.of(DopeDunes.MOD_ID, "dunes"));
-
-    public static final List<RegistryKey<Biome>> BIOMES = List.of(
-            DUNES
-    );
+    public static final RegistryKey<Biome> LUSH_DESERT = RegistryKey.of(RegistryKeys.BIOME, Identifier.of(DopeDunes.MOD_ID, "lush_desert"));
 
     public static void populate(FabricDynamicRegistryProvider.Entries entries) {
         entries.add(DUNES, DunesBiomes.create(entries));
+        entries.add(LUSH_DESERT, LushDesertBiomes.create(entries, false));
     }
 
     public static void addBasicFeatures(GenerationSettings.LookupBackedBuilder generationSettings) {

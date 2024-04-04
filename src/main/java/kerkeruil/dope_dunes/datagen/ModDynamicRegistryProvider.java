@@ -2,8 +2,13 @@ package kerkeruil.dope_dunes.datagen;
 
 
 import kerkeruil.dope_dunes.registry.ModBiomes;
+import kerkeruil.dope_dunes.registry.ModConfiguredFeatures;
+import kerkeruil.dope_dunes.world.ModPlacedFeatures;
+import kerkeruil.dope_dunes.world.dimension.ModDimensions;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricDynamicRegistryProvider;
+import net.minecraft.registry.RegistryBuilder;
+import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.RegistryWrapper;
 
 import java.util.concurrent.CompletableFuture;
@@ -14,15 +19,29 @@ public class ModDynamicRegistryProvider extends FabricDynamicRegistryProvider {
         super(output, registriesFuture);
     }
 
+    public static void buildRegistry(RegistryBuilder registryBuilder) {
+        // worldgen
+        registryBuilder.addRegistry(RegistryKeys.CONFIGURED_FEATURE, ModConfiguredFeatures::bootstrap);
+        registryBuilder.addRegistry(RegistryKeys.PLACED_FEATURE, ModPlacedFeatures::bootstrap);
+//        registryBuilder.addRegistry(RegistryKeys.BIOME, ModBiomzes::bootstrap);
+        registryBuilder.addRegistry(RegistryKeys.DIMENSION_TYPE, ModDimensions::bootstrapType);
+    }
+
     @Override
     public void configure(RegistryWrapper.WrapperLookup registries, Entries entries) {
-//        TerrestriaConfiguredFeatures.populate(entries);
-//        TerrestriaPlacedFeatures.populate(entries);
+
+        entries.addAll(registries.getWrapperOrThrow(RegistryKeys.CONFIGURED_FEATURE));
+        entries.addAll(registries.getWrapperOrThrow(RegistryKeys.PLACED_FEATURE));
+        entries.addAll(registries.getWrapperOrThrow(RegistryKeys.DIMENSION_TYPE));
+
+        ModConfiguredFeatures.populate(entries);
+        ModPlacedFeatures.populate(entries);
         ModBiomes.populate(entries);
+
     }
 
     @Override
     public String getName() {
-        return "Terrestria";
+        return "DopeDunes";
     }
 }

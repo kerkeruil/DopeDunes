@@ -1,17 +1,14 @@
 package kerkeruil.dope_dunes;
 
-import kerkeruil.dope_dunes.biome.biomegen.ModBiolithGeneration;
-import kerkeruil.dope_dunes.biome.surfacebuilders.ModSurfaceBuilders;
+import kerkeruil.dope_dunes.world.ModOreGeneration;
+import kerkeruil.dope_dunes.world.biome.biomegen.ModBiolithGeneration;
+import kerkeruil.dope_dunes.world.biome.surfacebuilders.ModSurfaceBuilders;
 import kerkeruil.dope_dunes.util.ModRegistries;
 import net.fabricmc.api.ModInitializer;
 
 import net.fabricmc.loader.api.FabricLoader;
-import net.minecraft.util.Identifier;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import terrablender.api.Regions;
-import terrablender.api.SurfaceRuleManager;
-import terrablender.api.TerraBlenderApi;
 
 import java.util.ArrayList;
 
@@ -52,6 +49,8 @@ public class DopeDunes implements ModInitializer {
 		} else {
 			LOGGER.warn("Terrestria world generation disabled; Biolith is not present.");
 		}
+
+
 	}
 
 	public static void callbackWhenInitialized(Runnable callback) {

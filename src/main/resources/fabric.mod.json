@@ -18,6 +18,9 @@
 		"main": [
 			"kerkeruil.dope_dunes.DopeDunes"
 		],
+		"client": [
+			"kerkeruil.dope_dunes.DopeDunesClient"
+		],
 		"fabric-datagen": [
 			"kerkeruil.dope_dunes.DopeDunesDataGenerator"
 		]

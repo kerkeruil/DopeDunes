@@ -1,0 +1,13 @@
+{
+  "replace": false,
+  "values": [
+    {
+      "id": "dope_dunes:lush_desert",
+      "required": false
+    },
+    {
+      "id": "dope_dunes:dunes",
+      "required": false
+    }
+  ]
+}
