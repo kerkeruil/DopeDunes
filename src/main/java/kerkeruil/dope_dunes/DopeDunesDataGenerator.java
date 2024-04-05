@@ -14,21 +14,11 @@ public class DopeDunesDataGenerator implements DataGeneratorEntrypoint {
 	public void onInitializeDataGenerator(FabricDataGenerator fabricDataGenerator) {
 		FabricDataGenerator.Pack pack = fabricDataGenerator.createPack();
 		pack.addProvider(ModBiomeTagProvider::new);
-
 		pack.addProvider(ModDynamicRegistryProvider::new);
-
-		pack.addProvider(ModModelProvider::new);
 		pack.addProvider(ModBlockTagProvider::new);
 		pack.addProvider(ModBlockLootTableGenerator::new);
+		pack.addProvider(ModModelProvider::new);
 		pack.addProvider(ModRecipeGenerator::new);
 
-//		pack.addProvider(ModWorldGenerator::new);
-
-
 	}
-
-//	@Override
-//	public void buildRegistry(RegistryBuilder registryBuilder) {
-//	}
-
 }

@@ -17,12 +17,15 @@ public class ModBlockTagProvider extends FabricTagProvider.BlockTagProvider {
     @Override
     protected void configure(RegistryWrapper.WrapperLookup arg) {
         getOrCreateTagBuilder(BlockTags.PICKAXE_MINEABLE)
-                .add(ModBlocks.RADIOACTIVE_ORE);
+                .add(ModBlocks.RADIOACTIVE_ORE)
+                .add(ModBlocks.DEEPSLATE_RADIOACTIVE_ORE);
 
         getOrCreateTagBuilder(BlockTags.NEEDS_IRON_TOOL)
-                .add(ModBlocks.RADIOACTIVE_ORE);
+                .add(ModBlocks.RADIOACTIVE_ORE)
+                .add(ModBlocks.DEEPSLATE_RADIOACTIVE_ORE);
 
         getOrCreateTagBuilder(ConventionalBlockTags.ORES)
-                .add(ModBlocks.RADIOACTIVE_ORE);
+                .add(ModBlocks.RADIOACTIVE_ORE)
+                .add(ModBlocks.DEEPSLATE_RADIOACTIVE_ORE);
     }
 }

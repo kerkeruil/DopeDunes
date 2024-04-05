@@ -1,10 +1,10 @@
-// 1.20.2	2024-04-04T23:56:47.0795074	Dope Dunes/Tags for minecraft:worldgen/biome
+// 1.20.2	2024-04-05T08:26:05.7591774	Dope Dunes/Tags for minecraft:worldgen/biome
 57c34ba401280ff210e2e3e5d40e68c945b3107f data\minecraft\tags\worldgen\biome\spawns_warm_variant_frogs.json
 57c34ba401280ff210e2e3e5d40e68c945b3107f data\c\tags\worldgen\biome\in_overworld.json
 57c34ba401280ff210e2e3e5d40e68c945b3107f data\minecraft\tags\worldgen\biome\has_structure\village_desert.json
 57c34ba401280ff210e2e3e5d40e68c945b3107f data\minecraft\tags\worldgen\biome\has_structure\ruined_portal_desert.json
-57c34ba401280ff210e2e3e5d40e68c945b3107f data\minecraft\tags\worldgen\biome\has_structure\desert_pyramid.json
 57c34ba401280ff210e2e3e5d40e68c945b3107f data\minecraft\tags\worldgen\biome\has_structure\mineshaft.json
 57c34ba401280ff210e2e3e5d40e68c945b3107f data\minecraft\tags\worldgen\biome\has_structure\stronghold.json
+57c34ba401280ff210e2e3e5d40e68c945b3107f data\minecraft\tags\worldgen\biome\has_structure\desert_pyramid.json
 250dd7b474d7f9bd5d4b8399a4033cff1223095b data\minecraft\tags\worldgen\biome\allows_surface_slime_spawns.json
 57c34ba401280ff210e2e3e5d40e68c945b3107f data\c\tags\worldgen\biome\desert.json

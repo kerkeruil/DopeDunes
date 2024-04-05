@@ -31,6 +31,7 @@ public class ModPlacedFeatures {
     public static final RegistryKey<PlacedFeature> PATCH_LUSH_DESERT_VEGETATION = createRegistryKey("patch_lush_desert_vegetation");
 
     public static final RegistryKey<PlacedFeature> RADIOACTIVE_ORE_PLACED_KEY = createRegistryKey("radioactive_ore_placed");
+    public static final RegistryKey<PlacedFeature> DEEPSLATE_RADIOACTIVE_ORE_PLACED_KEY = createRegistryKey("deepslate_radioactive_ore_placed");
 
 
     private static void register(Registerable<PlacedFeature> context, RegistryKey<PlacedFeature> key, RegistryEntry<ConfiguredFeature<?, ?>> configuration,
@@ -84,12 +85,12 @@ public class ModPlacedFeatures {
                         // Distribution between -80 and 80
                         HeightRangePlacementModifier.uniform(YOffset.fixed(-80), YOffset.fixed(80)))
         ));
-//
-//        register(context, RADIOACTIVE_ORE_PLACED_KEY, configuredFeatureRegistryEntryLookup.getOrThrow(RADIOACTIVE_ORE_KEY),
-//                ModOrePlacement.modifiersWithCount(10, // Veins per Chunk
-//                        // Distribution between -80 and 80
-//                        HeightRangePlacementModifier.uniform(YOffset.fixed(-80), YOffset.fixed(80))));
 
+        entries.add(DEEPSLATE_RADIOACTIVE_ORE_PLACED_KEY, placeFeature(entries, ModConfiguredFeatures.DEEPSLATE_RADIOACTIVE_ORE_KEY,
+                ModOrePlacement.modifiersWithCount(10, // Veins per Chunk
+                        // Distribution between -80 and 80
+                        HeightRangePlacementModifier.uniform(YOffset.fixed(-80), YOffset.fixed(80)))
+        ));
     }
 
     private static DataPool.Builder<BlockState> createStatePoolBuilder() {

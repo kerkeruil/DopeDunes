@@ -1,4 +1,9 @@
-// 1.20.2	2024-04-04T23:56:47.0689818	Dope Dunes/Model Definitions
+// 1.20.2	2024-04-05T08:26:05.7580471	Dope Dunes/Model Definitions
+eff5f127d0fe189d9736a53b11e553e240815b2f assets\dope_dunes\blockstates\pink_garnet_block.json
+fecaa44947116102af39c0477db87262c788f56b assets\dope_dunes\blockstates\deepslate_radioactive_ore.json
+0a5aeec78559c0210d116cf6ae63a2e597b7a46a assets\dope_dunes\models\block\deepslate_radioactive_ore.json
+d15f79b626eb596e2dede63b5b15edd7144bbbb8 assets\dope_dunes\models\item\pink_garnet_block_item.json
+2c406658dbee2550d76a40ee2954de01d0af4d18 assets\dope_dunes\models\block\pink_garnet_block.json
 112249c5da1c1af00745a339e3a0f8a044313c22 assets\dope_dunes\models\block\radioactive_ore.json
 5aeb116a365a01a138c23d162de5a35861834b63 assets\dope_dunes\models\item\radioactive_ingot.json
 397741e4c88c34df293c9ffd0e557fc909a6bce5 assets\dope_dunes\blockstates\radioactive_ore.json

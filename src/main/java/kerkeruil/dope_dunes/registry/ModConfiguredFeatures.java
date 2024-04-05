@@ -18,24 +18,16 @@ import java.util.List;
 @SuppressWarnings("UnstableApiUsage")
 public class ModConfiguredFeatures {
     public static final RegistryKey<ConfiguredFeature<?, ?>> RADIOACTIVE_ORE_KEY = createRegistryKey("radioactive_ore");
+    public static final RegistryKey<ConfiguredFeature<?, ?>> DEEPSLATE_RADIOACTIVE_ORE_KEY = createRegistryKey("deepslate_radioactive_ore");
 
     public static void populate(FabricDynamicRegistryProvider.Entries entries) {
         RuleTest stoneReplaceables = new TagMatchRuleTest(BlockTags.STONE_ORE_REPLACEABLES);
 
        entries.add(RADIOACTIVE_ORE_KEY, configureFeature(Feature.ORE, new OreFeatureConfig(stoneReplaceables, ModBlocks.RADIOACTIVE_ORE.getDefaultState(), 14)));
+       entries.add(DEEPSLATE_RADIOACTIVE_ORE_KEY, configureFeature(Feature.ORE, new OreFeatureConfig(stoneReplaceables, ModBlocks.DEEPSLATE_RADIOACTIVE_ORE.getDefaultState(), 14)));
 
 
     }
-
-//    public static void bootstrap(Registerable<ConfiguredFeature<?, ?>> context) {
-//        RuleTest stoneReplaceables = new TagMatchRuleTest(BlockTags.STONE_ORE_REPLACEABLES);
-//
-//        List<OreFeatureConfig.Target> overworldRadioactiveOres =
-//                List.of(OreFeatureConfig.createTarget(stoneReplaceables, ModBlocks.RADIOACTIVE_ORE.getDefaultState()));
-//
-//        register(context, RADIOACTIVE_ORE_KEY, Feature.ORE, new OreFeatureConfig(overworldRadioactiveOres, 12));
-//    }
-
 
     public static RegistryKey<ConfiguredFeature<?, ?>> createRegistryKey(String name) {
         return RegistryKey.of(RegistryKeys.CONFIGURED_FEATURE, Identifier.of(DopeDunes.MOD_ID, name));
@@ -48,9 +40,5 @@ public class ModConfiguredFeatures {
     private static <FC extends FeatureConfig, F extends Feature<FC>> void register(Registerable<ConfiguredFeature<?, ?>> context,
                                                                                    RegistryKey<ConfiguredFeature<?, ?>> key, F feature, FC configuration) {
         context.register(key, new ConfiguredFeature<>(feature, configuration));
-    }
-
-    public static void init() {
-        // This just creates the registry keys.  Configured Features are requested and consumed by datagen now.
     }
 }

@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
-    "dope_dunes:radioactive_ore"
+    "dope_dunes:radioactive_ore",
+    "dope_dunes:deepslate_radioactive_ore"
   ]
 }

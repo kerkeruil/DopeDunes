@@ -16,5 +16,6 @@ public class ModBlockLootTableGenerator extends FabricBlockLootTableProvider {
     @Override
     public void generate() {
         addDrop(ModBlocks.RADIOACTIVE_ORE, oreDrops(ModBlocks.RADIOACTIVE_ORE, ModItems.RADIOACTIVE_INGOT));
+        addDrop(ModBlocks.RADIOACTIVE_ORE, oreDrops(ModBlocks.DEEPSLATE_RADIOACTIVE_ORE, ModItems.RADIOACTIVE_INGOT));
     }
 }

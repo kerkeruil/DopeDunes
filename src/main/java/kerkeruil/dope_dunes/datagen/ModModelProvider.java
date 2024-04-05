@@ -13,7 +13,9 @@ public class ModModelProvider extends FabricModelProvider {
 
     @Override
     public void generateBlockStateModels(BlockStateModelGenerator blockStateModelGenerator) {
+        blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.PINK_GARNET_BLOCK);
         blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.RADIOACTIVE_ORE);
+        blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.DEEPSLATE_RADIOACTIVE_ORE);
 
     }
 

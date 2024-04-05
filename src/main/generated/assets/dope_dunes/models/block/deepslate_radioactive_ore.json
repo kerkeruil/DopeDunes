@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cube_all",
+  "textures": {
+    "all": "dope_dunes:block/deepslate_radioactive_ore"
+  }
+}
