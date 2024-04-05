@@ -1,6 +1,6 @@
 {
 	"schemaVersion": 1,
-	"id": "dope-dunes",
+	"id": "dope_dunes",
 	"version": "${version}",
 	"name": "Dope Dunes",
 	"description": "This is an example description! Tell everyone what your mod is about!",
