@@ -14,9 +14,6 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.math.intprovider.UniformIntProvider;
 
 public class ModBlocks {
-    public static final Block PINK_GARNET_BLOCK = registerBlock("pink_garnet_block",
-            new Block(FabricBlockSettings.copyOf(Blocks.IRON_BLOCK)));
-
     public static final Block RADIOACTIVE_ORE = registerBlock("radioactive_ore",
             new ExperienceDroppingBlock(FabricBlockSettings.copyOf(Blocks.STONE), UniformIntProvider.create(3, 6)));
 

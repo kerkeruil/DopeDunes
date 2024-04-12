@@ -2,6 +2,7 @@ package kerkeruil.dope_dunes.util;
 
 import kerkeruil.dope_dunes.DopeDunes;
 import kerkeruil.dope_dunes.block.ModBlocks;
+import kerkeruil.dope_dunes.particle.ModParticles;
 import kerkeruil.dope_dunes.registry.ModBiomes;
 import kerkeruil.dope_dunes.registry.ModItemGroup;
 import kerkeruil.dope_dunes.registry.ModItems;
@@ -19,7 +20,7 @@ public class ModRegistries {
         ModItems.registerModItems();
         ModBlocks.registerModBlocks();
         ModOreGeneration.generateOres();
-
+        ModParticles.registerParticles();
     }
 
     private static void createPortal() {

@@ -2,6 +2,8 @@ package kerkeruil.dope_dunes.registry;
 
 import kerkeruil.dope_dunes.DopeDunes;
 import kerkeruil.dope_dunes.item.BlinkOrbItem;
+import kerkeruil.dope_dunes.item.ModArmorItem;
+import kerkeruil.dope_dunes.item.ModArmorMaterials;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroupEntries;
@@ -27,6 +29,16 @@ public class ModItems {
 
     public static final Item BLINK_ORB = registerItem("blink_orb",
             new BlinkOrbItem(new FabricItemSettings().maxDamage(100)));
+
+
+    public static final Item RADIOACTIVE_HELMET = registerItem("radioactive_helmet",
+            new ModArmorItem(ModArmorMaterials.RADIOACTIVE_INGOT, ArmorItem.Type.HELMET, new FabricItemSettings()));
+    public static final Item RADIOACTIVE_CHESTPLATE = registerItem("radioactive_chestplate",
+            new ModArmorItem(ModArmorMaterials.RADIOACTIVE_INGOT, ArmorItem.Type.CHESTPLATE, new FabricItemSettings()));
+    public static final Item RADIOACTIVE_LEGGINGS = registerItem("radioactive_leggings",
+            new ModArmorItem(ModArmorMaterials.RADIOACTIVE_INGOT, ArmorItem.Type.LEGGINGS, new FabricItemSettings()));
+    public static final Item RADIOACTIVE_BOOTS = registerItem("radioactive_boots",
+            new ModArmorItem(ModArmorMaterials.RADIOACTIVE_INGOT, ArmorItem.Type.BOOTS, new FabricItemSettings()));
 
     public static void registerModItems() {
         DopeDunes.LOGGER.info("Registering " + itemList.size() + "Mod Items for " + DopeDunes.MOD_ID);
