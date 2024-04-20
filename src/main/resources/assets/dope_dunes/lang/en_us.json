@@ -2,12 +2,27 @@
   //Itemgroup
   "itemgroup.dope_dunes_group:": "The Dope Dunes",
 
+  //Regular blocks
+  "block.dope_dunes.radioactive_ore": "Radioactive Ore",
+  "block.dope_dunes.deepslate_radioactive_ore": "Deepslate Radioactive Ore",
+
   //Regular items
   "item.dope_dunes.radioactive_ingot": "Radioactive Ingot",
 
-  //Regular blocks
-  "item.dope_dunes.radioactive_ore": "Radioactive Ore",
+  //Armor
+  "item.dope_dunes.radioactive_helm": "Radioactive Helm",
+  "item.dope_dunes.radioactive_chestplate": "Radioactive Chestplate",
+  "item.dope_dunes.radioactive_leggings": "Radioactive Leggings",
+  "item.dope_dunes.radioactive_boots": "Radioactive Boots",
 
   //Custom item
-  "item.dope_dunes.blink_orb": "Blink Orb"
+  "item.dope_dunes.blink_orb": "Blink Orb",
+
+  //Effects
+  "effect.dope_dunes.slimey": "Slimey",
+
+  //Potions
+  "item.dope_dunes.potion.effect.slimey_potion": "Slimey Potion",
+  "item.dope_dunes.lingering_potion.effect.slimey_potion": "Slimey Lingering Potion",
+  "item.dope_dunes.splash_potion.effect.slimey_potion": "Slimey Splash Potion"
 }

@@ -3,7 +3,7 @@
 	"package": "kerkeruil.dope_dunes.mixin",
 	"compatibilityLevel": "JAVA_17",
 	"mixins": [
-		"ExampleMixin"
+		"BrewingRecipeRegistryMixin"
 	],
 	"client": [
 		"ItemRendererAccessor",

@@ -2,6 +2,9 @@ package kerkeruil.dope_dunes.util;
 
 import kerkeruil.dope_dunes.DopeDunes;
 import kerkeruil.dope_dunes.block.ModBlocks;
+import kerkeruil.dope_dunes.effect.ModEffects;
+import kerkeruil.dope_dunes.effect.ModPotions;
+import kerkeruil.dope_dunes.mixin.BrewingRecipeRegistryMixin;
 import kerkeruil.dope_dunes.particle.ModParticles;
 import kerkeruil.dope_dunes.registry.ModBiomes;
 import kerkeruil.dope_dunes.registry.ModItemGroup;
@@ -10,6 +13,7 @@ import kerkeruil.dope_dunes.world.ModOreGeneration;
 import net.kyrptonaught.customportalapi.api.CustomPortalBuilder;
 import net.minecraft.block.Blocks;
 import net.minecraft.item.Items;
+import net.minecraft.potion.Potions;
 import net.minecraft.util.Identifier;
 
 public class ModRegistries {
@@ -21,8 +25,15 @@ public class ModRegistries {
         ModBlocks.registerModBlocks();
         ModOreGeneration.generateOres();
         ModParticles.registerParticles();
+        ModEffects.registerEffects();
+        ModPotions.registerPotions();
+        registerPotionRecipes();
     }
 
+    // TODO: replace this function
+    private static void registerPotionRecipes() {
+        BrewingRecipeRegistryMixin.invokeRegisterPotionRecipe(Potions.AWKWARD, ModItems.RADIOACTIVE_INGOT, ModPotions.SLIMEY_POTION);
+    }
     private static void createPortal() {
         CustomPortalBuilder.beginPortal()
                 .frameBlock(Blocks.RED_SAND)
@@ -33,3 +44,4 @@ public class ModRegistries {
     }
 
 }
+
