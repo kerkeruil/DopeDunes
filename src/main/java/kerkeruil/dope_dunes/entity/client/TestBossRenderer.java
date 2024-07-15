@@ -11,7 +11,7 @@ import net.minecraft.util.Identifier;
 
 public class TestBossRenderer extends MobEntityRenderer<TestBossEntity, TestBossModel<TestBossEntity>> {
     private static final Identifier TEXTURE = new Identifier(DopeDunes.MOD_ID, "textures/entity/test_boss.png");
-
+    private static float sizeMultiplier = 1.5f;
     public TestBossRenderer(EntityRendererFactory.Context ctx) {
         super(ctx, new TestBossModel<>(ctx.getPart(ModModelLayers.TEST_BOSS)), 0.6f);
     }
@@ -24,7 +24,7 @@ public class TestBossRenderer extends MobEntityRenderer<TestBossEntity, TestBoss
     @Override
     public void render(TestBossEntity livingEntity, float f, float g, MatrixStack matrixStack,
                        VertexConsumerProvider vertexConsumerProvider, int i) {
-        matrixStack.scale(1f, 1f, 1f);
+        matrixStack.scale(sizeMultiplier, sizeMultiplier, sizeMultiplier);
 
         super.render(livingEntity, f, g, matrixStack, vertexConsumerProvider, i);
     }
