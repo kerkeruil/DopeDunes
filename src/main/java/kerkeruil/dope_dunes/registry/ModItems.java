@@ -1,6 +1,7 @@
 package kerkeruil.dope_dunes.registry;
 
 import kerkeruil.dope_dunes.DopeDunes;
+import kerkeruil.dope_dunes.entity.ModEntities;
 import kerkeruil.dope_dunes.item.BlinkOrbItem;
 import kerkeruil.dope_dunes.item.ModArmorItem;
 import kerkeruil.dope_dunes.item.ModArmorMaterials;
@@ -31,7 +32,7 @@ public class ModItems {
     public static final Item BLINK_ORB = registerItem("blink_orb",
             new BlinkOrbItem(new FabricItemSettings().maxDamage(100)));
 
-
+//  Armor
     public static final Item RADIOACTIVE_HELMET = registerItem("radioactive_helmet",
             new ModArmorItem(ModArmorMaterials.RADIOACTIVE_INGOT, ArmorItem.Type.HELMET, new FabricItemSettings()));
     public static final Item RADIOACTIVE_CHESTPLATE = registerItem("radioactive_chestplate",
@@ -40,6 +41,10 @@ public class ModItems {
             new ModArmorItem(ModArmorMaterials.RADIOACTIVE_INGOT, ArmorItem.Type.LEGGINGS, new FabricItemSettings()));
     public static final Item RADIOACTIVE_BOOTS = registerItem("radioactive_boots",
             new ModArmorItem(ModArmorMaterials.RADIOACTIVE_INGOT, ArmorItem.Type.BOOTS, new FabricItemSettings()));
+
+//  Spawn Eggs
+    public static final Item TEST_BOSS_EGG = registerItem("test_boss_egg",
+        new SpawnEggItem(ModEntities.TEST_BOSS, 0x727272, 0x03c90e, new FabricItemSettings()));
 
     public static void registerModItems() {
         DopeDunes.LOGGER.info("Registering " + itemList.size() + " Mod Items for " + DopeDunes.MOD_ID);

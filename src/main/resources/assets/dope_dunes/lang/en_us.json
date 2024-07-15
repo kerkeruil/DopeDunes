@@ -17,7 +17,7 @@
 
   //Custom item
   "item.dope_dunes.blink_orb": "Blink Orb",
-  "tooltip.dope_dunes.blink_orb.tooltip": "Amplifies your current speed, be careful...",
+  "tooltip.dope_dunes.blink_orb.tooltip": "Amplifies your current speed. Use with care...",
 
   //Effects
   "effect.dope_dunes.slimey": "Slimey",
