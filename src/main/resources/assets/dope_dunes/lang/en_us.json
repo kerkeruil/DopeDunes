@@ -1,6 +1,6 @@
 {
   //Itemgroup
-  "itemgroup.dope_dunes_group:": "The Dope Dunes",
+  "itemgroup.dope_dunes_group": "The Dope Dunes",
 
   //Regular blocks
   "block.dope_dunes.radioactive_ore": "Radioactive Ore",
@@ -10,19 +10,20 @@
   "item.dope_dunes.radioactive_ingot": "Radioactive Ingot",
 
   //Armor
-  "item.dope_dunes.radioactive_helm": "Radioactive Helm",
+  "item.dope_dunes.radioactive_helmet": "Radioactive Helmet",
   "item.dope_dunes.radioactive_chestplate": "Radioactive Chestplate",
   "item.dope_dunes.radioactive_leggings": "Radioactive Leggings",
   "item.dope_dunes.radioactive_boots": "Radioactive Boots",
 
   //Custom item
   "item.dope_dunes.blink_orb": "Blink Orb",
+  "tooltip.dope_dunes.blink_orb.tooltip": "Amplifies your current speed, be careful...",
 
   //Effects
   "effect.dope_dunes.slimey": "Slimey",
 
   //Potions
-  "item.dope_dunes.potion.effect.slimey_potion": "Slimey Potion",
-  "item.dope_dunes.lingering_potion.effect.slimey_potion": "Slimey Lingering Potion",
-  "item.dope_dunes.splash_potion.effect.slimey_potion": "Slimey Splash Potion"
+  "item.minecraft.potion.effect.slimey_potion": "Slimey Potion",
+  "item.minecraft.lingering_potion.effect.slimey_potion": "Slimey Lingering Potion",
+  "item.minecraft.splash_potion.effect.slimey_potion": "Slimey Splash Potion"
 }

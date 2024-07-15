@@ -20,6 +20,7 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.math.intprovider.UniformIntProvider;
 
 import java.util.ArrayList;
+import java.util.logging.Logger;
 
 public class ModItems {
     public static ArrayList<Object> itemList = new ArrayList<>();
@@ -41,7 +42,7 @@ public class ModItems {
             new ModArmorItem(ModArmorMaterials.RADIOACTIVE_INGOT, ArmorItem.Type.BOOTS, new FabricItemSettings()));
 
     public static void registerModItems() {
-        DopeDunes.LOGGER.info("Registering " + itemList.size() + "Mod Items for " + DopeDunes.MOD_ID);
+        DopeDunes.LOGGER.info("Registering " + itemList.size() + " Mod Items for " + DopeDunes.MOD_ID);
         ItemGroupEvents.modifyEntriesEvent(ModItemGroup.DOPE_DUNES_GROUP_KEY).register(ModItems::itemGroupDopeDunes);
     }
 
@@ -52,8 +53,15 @@ public class ModItems {
 
     private static void itemGroupDopeDunes(FabricItemGroupEntries entries) {
         for(Object item : itemList){
-            // Cast item to right instance to satisfy the entries.add function.
-            entries.add(item instanceof Item ? (Item) item : (Block) item);
+            if(item instanceof Item){
+                entries.add((Item) item);
+            } else if(item instanceof Block){
+                entries.add((Block) item);
+            } else if(item instanceof ItemStack){
+                entries.add((ItemStack) item);
+            } else{
+                DopeDunes.LOGGER.info("Couldn't recognize type in itemlist: " + item.getClass() + " " + item);
+            }
         }
     }
 }

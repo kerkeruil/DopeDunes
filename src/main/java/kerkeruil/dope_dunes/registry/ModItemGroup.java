@@ -27,9 +27,9 @@ public class ModItemGroup {
             FabricItemGroup.builder().displayName(Text.translatable("itemgroup.dope_dunes_group"))
                     .icon(() -> new ItemStack(ModItems.RADIOACTIVE_INGOT)).entries((displayContext, entries) ->
                     {
-                        entries.add(SlimeyPotionStack);
-                        entries.add(SlimeyLingeringPotionStack);
-                        entries.add(SlimeySplashPotionStack);
+//                        entries.add(SlimeyPotionStack);
+//                        entries.add(SlimeyLingeringPotionStack);
+//                        entries.add(SlimeySplashPotionStack);
                         /*Items are added via the item class*/
                     })
                     .build());
