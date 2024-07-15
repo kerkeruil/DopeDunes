@@ -1,5 +1,6 @@
 package kerkeruil.dope_dunes.entity.custom;
 
+import kerkeruil.dope_dunes.entity.ai.TestBossBasicAttackGoal;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.goal.*;
@@ -34,12 +35,10 @@ public class TestBossEntity extends HostileEntity {
     @Override
     protected void initGoals() {
         this.goalSelector.add(0, new SwimGoal(this));
-//        this.goalSelector.add(1, new CrawlerAttackGoal(this, 1.0, false));
+        this.goalSelector.add(1, new TestBossBasicAttackGoal(this, 1.0, false));
         this.targetSelector.add(2, new ActiveTargetGoal(this, PlayerEntity.class, true));
         this.goalSelector.add(3, new LookAtEntityGoal(this, PlayerEntity.class, 4.0F));
         this.goalSelector.add(4, new LookAroundGoal(this));
-
-
     }
 
     private void setupAnimationStates() {
@@ -51,7 +50,7 @@ public class TestBossEntity extends HostileEntity {
         }
 
         if(this.isAttacking() && attackAnimationTimeout <= 0) {
-            attackAnimationTimeout = 20; // THIS IS LENGTH OF ANIMATION IN TICKS
+            attackAnimationTimeout = 15; // THIS IS LENGTH OF ANIMATION IN TICKS
             attackAnimationState.start(this.age);
         } else {
             --this.attackAnimationTimeout;
@@ -92,9 +91,10 @@ public class TestBossEntity extends HostileEntity {
 
         return HostileEntity.createHostileAttributes()
                 .add(EntityAttributes.GENERIC_FOLLOW_RANGE, 35.0)
-                .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.23000000417232513)
+                .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.1)
                 .add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 3.0)
-                .add(EntityAttributes.GENERIC_ARMOR, 2.0);
+                .add(EntityAttributes.GENERIC_ARMOR, 2.0)
+                .add(EntityAttributes.GENERIC_ATTACK_KNOCKBACK,2);
     }
 
     @Override
@@ -120,20 +120,20 @@ public class TestBossEntity extends HostileEntity {
     @Nullable
     @Override
     protected SoundEvent getAmbientSound() {
-        return SoundEvents.ENTITY_ZOMBIE_AMBIENT;
+        return SoundEvents.ENTITY_SKELETON_AMBIENT;
     }
     @Nullable
     @Override
     protected SoundEvent getHurtSound(DamageSource source) {
-        return SoundEvents.ENTITY_ZOMBIE_HURT;
+        return SoundEvents.ENTITY_SKELETON_HURT;
     }
     @Nullable
     @Override
     protected SoundEvent getDeathSound() {
-        return SoundEvents.ENTITY_ZOMBIE_DEATH;
+        return SoundEvents.ENTITY_SKELETON_DEATH;
     }
     protected SoundEvent getStepSound() {
-        return SoundEvents.ENTITY_ZOMBIE_STEP;
+        return SoundEvents.ENTITY_SKELETON_STEP;
     }
     @Nullable
     @Override

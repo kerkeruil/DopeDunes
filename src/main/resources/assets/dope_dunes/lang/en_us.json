@@ -25,5 +25,8 @@
   //Potions
   "item.minecraft.potion.effect.slimey_potion": "Slimey Potion",
   "item.minecraft.lingering_potion.effect.slimey_potion": "Slimey Lingering Potion",
-  "item.minecraft.splash_potion.effect.slimey_potion": "Slimey Splash Potion"
+  "item.minecraft.splash_potion.effect.slimey_potion": "Slimey Splash Potion",
+
+  //Eggs
+  "item.dope_dunes.test_boss_egg": "Test boss Spawn Egg"
 }
