@@ -43,7 +43,7 @@ public class TestBossBasicAttackGoal extends MeleeAttackGoal {
             resetAttackCooldown();
             shouldCountTillNextAttack = false;
             entity.setAttacking(false);
-            entity.attackAnimationTimeout = 0;
+//            entity.attackAnimationTimeout = 0;
         }
     }
 

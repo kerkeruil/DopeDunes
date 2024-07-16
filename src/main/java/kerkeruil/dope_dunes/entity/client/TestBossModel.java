@@ -87,7 +87,7 @@ public class TestBossModel<T extends TestBossEntity> extends SinglePartEntityMod
         this.setHeadAngles(entity, netHeadYaw, headPitch, ageInTicks);
 
         this.animateMovement(ModAnimations.WALK, limbSwing, limbSwingAmount, 2f, 2.5f);
-        this.updateAnimation(entity.idleAnimationState, ModAnimations.STAND, ageInTicks, 1f);
-        this.updateAnimation(entity.attackAnimationState, ModAnimations.ATTACK, ageInTicks, 1f);
+//        this.updateAnimation(entity.idleAnimationState, ModAnimations.STAND, ageInTicks, 1f);
+//        this.updateAnimation(entity.attackAnimationState, ModAnimations.ATTACK, ageInTicks, 1f);
     }
 }
