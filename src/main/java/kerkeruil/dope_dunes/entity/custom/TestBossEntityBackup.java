@@ -1,8 +1,6 @@
 package kerkeruil.dope_dunes.entity.custom;
 
-import kerkeruil.dope_dunes.entity.ai.TestBossBasicAttackGoal;
 import net.minecraft.block.BlockState;
-import net.minecraft.entity.AnimationState;
 import net.minecraft.entity.EntityGroup;
 import net.minecraft.entity.EntityPose;
 import net.minecraft.entity.EntityType;
@@ -23,16 +21,17 @@ import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
+import software.bernie.geckolib.animatable.GeoEntity;
+import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
+import software.bernie.geckolib.core.animation.*;
+import software.bernie.geckolib.core.object.PlayState;
+import software.bernie.geckolib.util.GeckoLibUtil;
 
-public class TestBossEntityBackup extends HostileEntity {
+public class TestBossEntityBackup extends HostileEntity implements GeoEntity {
     private static final TrackedData<Boolean> ATTACKING =
             DataTracker.registerData(TestBossEntityBackup.class, TrackedDataHandlerRegistry.BOOLEAN);
 
-    public final AnimationState idleAnimationState = new AnimationState();
-    private int idleAnimationTimeout = 0;
-
-    public final AnimationState attackAnimationState = new AnimationState();
-    public int attackAnimationTimeout = 0;
+    private final AnimatableInstanceCache geoCache = GeckoLibUtil.createInstanceCache(this);
 
     public TestBossEntityBackup(EntityType<? extends HostileEntity> entityType, World world) {
         super(entityType, world);
@@ -41,32 +40,10 @@ public class TestBossEntityBackup extends HostileEntity {
     @Override
     protected void initGoals() {
         this.goalSelector.add(0, new SwimGoal(this));
-        this.goalSelector.add(1, new TestBossBasicAttackGoal(this, 1.0, false));
         this.targetSelector.add(2, new ActiveTargetGoal(this, PlayerEntity.class, true));
         this.goalSelector.add(3, new LookAtEntityGoal(this, PlayerEntity.class, 4.0F));
         this.goalSelector.add(4, new LookAroundGoal(this));
     }
-
-    private void setupAnimationStates() {
-        if (this.idleAnimationTimeout <= 0) {
-            this.idleAnimationTimeout = this.random.nextInt(40) + 80;
-            this.idleAnimationState.start(this.age);
-        } else {
-            --this.idleAnimationTimeout;
-        }
-
-        if(this.isAttacking() && attackAnimationTimeout <= 0) {
-            attackAnimationTimeout = 15; // THIS IS LENGTH OF ANIMATION IN TICKS
-            attackAnimationState.start(this.age);
-        } else {
-            --this.attackAnimationTimeout;
-        }
-
-        if(!this.isAttacking()) {
-            attackAnimationState.stop();
-        }
-    }
-
 
     @Override
     public boolean shouldRenderName() {
@@ -80,17 +57,12 @@ public class TestBossEntityBackup extends HostileEntity {
         } else {
             f = 0.0F;
         }
-
         this.limbAnimator.updateLimbs(f, 0.2F);
     }
 
     @Override
     public void tick() {
         super.tick();
-
-        if (this.getWorld().isClient()) {
-            this.setupAnimationStates();
-        }
     }
 
     public static DefaultAttributeContainer.Builder createTestBossAttributes() {
@@ -149,5 +121,27 @@ public class TestBossEntityBackup extends HostileEntity {
     @Override
     public EntityGroup getGroup() {
         return EntityGroup.UNDEAD;
+    }
+
+//    GECKOLIB STUFF
+    @Override
+    public void registerControllers(AnimatableManager.ControllerRegistrar controllers) {
+        controllers.add(new AnimationController<>(this, "controller", 5, this::predicate));
+    }
+
+    private PlayState predicate(AnimationState<TestBossEntityBackup> testBossEntityAnimationState) {
+        if(testBossEntityAnimationState.isMoving()) {
+            testBossEntityAnimationState.getController().setAnimation(RawAnimation.begin().then("animation.test_boss.walk", Animation.LoopType.LOOP));
+            return PlayState.CONTINUE;
+        }
+
+        testBossEntityAnimationState.getController().setAnimation(RawAnimation.begin().then("animation.test_boss.stand", Animation.LoopType.LOOP));
+        return PlayState.CONTINUE;
+    }
+
+
+    @Override
+    public AnimatableInstanceCache getAnimatableInstanceCache() {
+        return geoCache;
     }
 }
