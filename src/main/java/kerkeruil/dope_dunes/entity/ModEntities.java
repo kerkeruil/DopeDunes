@@ -12,10 +12,10 @@ import net.minecraft.util.Identifier;
 
 public class ModEntities {
 
-    public static final EntityType<TestBossEntity> TEST_BOSS = Registry.register(Registries.ENTITY_TYPE,
-            new Identifier(DopeDunes.MOD_ID, "test_boss"),
+    public static final EntityType<TestBossEntity> TEST_BOSS = Registry.register(
+            Registries.ENTITY_TYPE, new Identifier(DopeDunes.MOD_ID, "test_boss"),
             FabricEntityTypeBuilder.create(SpawnGroup.MONSTER, TestBossEntity::new)
-                    .dimensions(EntityDimensions.fixed(0.6f, 2.3f)).trackRangeBlocks(64).fireImmune().build());
+                    .dimensions(EntityDimensions.fixed(0.6f, 2.3f)).build());
 
 
 

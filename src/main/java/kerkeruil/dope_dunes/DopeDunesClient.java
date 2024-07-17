@@ -25,7 +25,7 @@ public class DopeDunesClient implements ClientModInitializer {
         ParticleFactoryRegistry.getInstance().register(ModParticles.NUCLEAR_PARTICLE, NuclearParticle.Factory::new);
 
 //      Entities
-        EntityModelLayerRegistry.registerModelLayer(ModModelLayers.TEST_BOSS, TestBossModel::getTexturedModelData);
+//        EntityModelLayerRegistry.registerModelLayer(ModModelLayers.TEST_BOSS, TestBossModel::getTexturedModelData);
         EntityRendererRegistry.register(ModEntities.TEST_BOSS, TestBossRenderer::new);
     }
 }

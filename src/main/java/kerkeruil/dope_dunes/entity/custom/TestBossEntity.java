@@ -1,51 +1,74 @@
 package kerkeruil.dope_dunes.entity.custom;
 
-import com.google.common.collect.ImmutableList;
-import it.unimi.dsi.fastutil.objects.ObjectArrayList;
+import kerkeruil.dope_dunes.DopeDunes;
+import kerkeruil.dope_dunes.entity.ai.TestBossBasicAttackGoal;
+import net.minecraft.block.BlockState;
+import net.minecraft.entity.EntityGroup;
+import net.minecraft.entity.EntityPose;
 import net.minecraft.entity.EntityType;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.ai.brain.Brain;
+import net.minecraft.entity.ai.goal.ActiveTargetGoal;
+import net.minecraft.entity.ai.goal.LookAroundGoal;
+import net.minecraft.entity.ai.goal.LookAtEntityGoal;
+import net.minecraft.entity.ai.goal.SwimGoal;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
 import net.minecraft.entity.attribute.EntityAttributes;
+import net.minecraft.entity.damage.DamageSource;
+import net.minecraft.entity.data.DataTracker;
+import net.minecraft.entity.data.TrackedData;
+import net.minecraft.entity.data.TrackedDataHandlerRegistry;
 import net.minecraft.entity.mob.HostileEntity;
-import net.minecraft.entity.passive.IronGolemEntity;
-import net.minecraft.entity.passive.TurtleEntity;
-import net.minecraft.entity.passive.WolfEntity;
-import net.minecraft.entity.mob.SkeletonEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.BowItem;
+import net.minecraft.sound.SoundEvent;
+import net.minecraft.sound.SoundEvents;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.tslat.smartbrainlib.api.SmartBrainOwner;
-import net.tslat.smartbrainlib.api.core.BrainActivityGroup;
-import net.tslat.smartbrainlib.api.core.SmartBrainProvider;
-import net.tslat.smartbrainlib.api.core.behaviour.FirstApplicableBehaviour;
-import net.tslat.smartbrainlib.api.core.behaviour.OneRandomBehaviour;
-import net.tslat.smartbrainlib.api.core.behaviour.custom.attack.AnimatableMeleeAttack;
-import net.tslat.smartbrainlib.api.core.behaviour.custom.attack.BowAttack;
-import net.tslat.smartbrainlib.api.core.behaviour.custom.look.LookAtTarget;
-import net.tslat.smartbrainlib.api.core.behaviour.custom.misc.AvoidSun;
-import net.tslat.smartbrainlib.api.core.behaviour.custom.misc.Idle;
-import net.tslat.smartbrainlib.api.core.behaviour.custom.move.AvoidEntity;
-import net.tslat.smartbrainlib.api.core.behaviour.custom.move.EscapeSun;
-import net.tslat.smartbrainlib.api.core.behaviour.custom.move.MoveToWalkTarget;
-import net.tslat.smartbrainlib.api.core.behaviour.custom.move.StrafeTarget;
-import net.tslat.smartbrainlib.api.core.behaviour.custom.path.SetRandomWalkTarget;
-import net.tslat.smartbrainlib.api.core.behaviour.custom.target.InvalidateAttackTarget;
-import net.tslat.smartbrainlib.api.core.behaviour.custom.target.SetPlayerLookTarget;
-import net.tslat.smartbrainlib.api.core.behaviour.custom.target.SetRandomLookTarget;
-import net.tslat.smartbrainlib.api.core.behaviour.custom.target.TargetOrRetaliate;
-import net.tslat.smartbrainlib.api.core.sensor.ExtendedSensor;
-import net.tslat.smartbrainlib.api.core.sensor.vanilla.NearbyLivingEntitySensor;
-import net.tslat.smartbrainlib.api.core.sensor.vanilla.NearbyPlayersSensor;
+import org.jetbrains.annotations.Nullable;
+import software.bernie.geckolib.animatable.GeoEntity;
+import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
+import software.bernie.geckolib.core.animation.*;
+import software.bernie.geckolib.core.object.PlayState;
+import software.bernie.geckolib.util.GeckoLibUtil;
 
-import java.util.List;
+public class TestBossEntity extends HostileEntity implements GeoEntity {
+    private static final TrackedData<Boolean> ATTACKING =
+            DataTracker.registerData(TestBossEntity.class, TrackedDataHandlerRegistry.BOOLEAN);
 
-/**
- * Example Skeleton using the SBL brain system
- */
-public class TestBossEntity extends SkeletonEntity implements SmartBrainOwner<TestBossEntity> {
-    public TestBossEntity(EntityType<? extends TestBossEntity> entityType, World world) {
+    private final AnimatableInstanceCache geoCache = GeckoLibUtil.createInstanceCache(this);
+
+
+
+    public TestBossEntity(EntityType<? extends HostileEntity> entityType, World world) {
         super(entityType, world);
+    }
+
+    @Override
+    protected void initGoals() {
+        this.goalSelector.add(0, new SwimGoal(this));
+        this.goalSelector.add(1, new TestBossBasicAttackGoal(this, 1.0, false));
+        this.targetSelector.add(2, new ActiveTargetGoal(this, PlayerEntity.class, true));
+        this.goalSelector.add(3, new LookAtEntityGoal(this, PlayerEntity.class, 4.0F));
+        this.goalSelector.add(4, new LookAroundGoal(this));
+    }
+
+    @Override
+    public boolean shouldRenderName() {
+        return false;
+    }
+
+    protected void updateLimbs(float v) {
+        float f;
+        if (this.getPose() == EntityPose.STANDING) {
+            f = Math.min(v * 6.0F, 1.0F);
+        } else {
+            f = 0.0F;
+        }
+
+        this.limbAnimator.updateLimbs(f, 0.2F);
+    }
+
+    @Override
+    public void tick() {
+        super.tick();
     }
 
     public static DefaultAttributeContainer.Builder createTestBossAttributes() {
@@ -58,69 +81,73 @@ public class TestBossEntity extends SkeletonEntity implements SmartBrainOwner<Te
     }
 
     @Override
-    protected void initGoals() {}
-//    // Let's make sure we're definitely not using any goals
-
-//    @Override
-//    public final void reassessWeaponGoal() {}
-//
-    @Override
-    protected Brain.Profile<?> createBrainProfile() {
-        return new SmartBrainProvider<>(this);
+    public int getXpToDrop() {
+        return super.getXpToDrop();
     }
 
-    @Override
-    public List<? extends ExtendedSensor<? extends TestBossEntity>> getSensors() {
-        return ObjectArrayList.of(
-                new NearbyPlayersSensor<>(), 							// Keep track of nearby players
-                new NearbyLivingEntitySensor<TestBossEntity>()
-                        .setPredicate((target, entity) ->
-                                target instanceof PlayerEntity ||
-                                        target instanceof IronGolemEntity ||
-                                        target instanceof WolfEntity ||
-                                        (target instanceof TurtleEntity turtle && turtle.isBaby() && !turtle.isInsideWaterOrBubbleColumn())));
-    }																	// Keep track of nearby entities the Skeleton is interested in
 
     @Override
-    public BrainActivityGroup<? extends TestBossEntity> getCoreTasks() {
-        return BrainActivityGroup.coreTasks(
-                new AvoidSun<>(),																							// Keep pathfinder avoiding the sun
-                new EscapeSun<>().cooldownFor(entity -> 20),													// Escape the sun
-                new AvoidEntity<>().avoiding(entity -> entity instanceof WolfEntity),												// Run away from wolves
-                new LookAtTarget<>().runFor(entity -> entity.getRandom().nextBetween(40, 300)), 														// Look at the look target
-                new StrafeTarget<>().stopStrafingWhen(entity -> !isHoldingBow(entity)).startCondition(TestBossEntity::isHoldingBow),	// Strafe around target
-                new MoveToWalkTarget<>());																					// Move to the current walk target
+    protected void initDataTracker() {
+        super.initDataTracker();
+        this.dataTracker.startTracking(ATTACKING, false);
     }
 
-    @Override
-    public BrainActivityGroup<? extends TestBossEntity> getIdleTasks() {
-        return BrainActivityGroup.idleTasks(
-                new FirstApplicableBehaviour<TestBossEntity>( 				// Run only one of the below behaviours, trying each one in order. Include explicit generic typing because javac is silly
-                        new TargetOrRetaliate<>(),						// Set the attack target
-                        new SetPlayerLookTarget<>(),					// Set the look target to a nearby player if available
-                        new SetRandomLookTarget<>()), 					// Set the look target to a random nearby location
-                new OneRandomBehaviour<>( 								// Run only one of the below behaviours, picked at random
-                        new SetRandomWalkTarget<>().speedModifier(1), 				// Set the walk target to a nearby random pathable location
-                        new Idle<>().runFor(entity -> entity.getRandom().nextBetween(30, 60)))); // Don't walk anywhere
+    public void setAttacking(boolean attacking) {
+        this.dataTracker.set(ATTACKING, attacking);
     }
 
-    @Override
-    public BrainActivityGroup<? extends TestBossEntity> getFightTasks() {
-        return BrainActivityGroup.fightTasks(
-                new InvalidateAttackTarget<>(), 	 // Invalidate the attack target if it's no longer applicable
-                new FirstApplicableBehaviour<>( 																							  	 // Run only one of the below behaviours, trying each one in order
-                        new BowAttack<>(20).startCondition(TestBossEntity::isHoldingBow),	 												 // Fire a bow, if holding one
-                        new AnimatableMeleeAttack<>(0).whenStarting(entity -> setAttacking(true)).whenStarting(entity -> setAttacking(false)))// Melee attack
-        );
+    public boolean isAttacking() {
+        return this.dataTracker.get(ATTACKING);
     }
 
+    @Nullable
     @Override
-    protected void mobTick() {
-        tickBrain(this);
+    protected SoundEvent getAmbientSound() {
+        return SoundEvents.ENTITY_SKELETON_AMBIENT;
+    }
+    @Nullable
+    @Override
+    protected SoundEvent getHurtSound(DamageSource source) {
+        return SoundEvents.ENTITY_SKELETON_HURT;
+    }
+    @Nullable
+    @Override
+    protected SoundEvent getDeathSound() {
+        return SoundEvents.ENTITY_SKELETON_DEATH;
+    }
+    protected SoundEvent getStepSound() {
+        return SoundEvents.ENTITY_SKELETON_STEP;
+    }
+    @Nullable
+    @Override
+    protected void playStepSound(BlockPos pos, BlockState state) {
+        this.playSound(this.getStepSound(), 0.15F, 1.0F);
+    }
+    @Nullable
+    @Override
+    public EntityGroup getGroup() {
+        return EntityGroup.UNDEAD;
     }
 
-    // Easy predicate to save on redundant code
-    private static boolean isHoldingBow(LivingEntity livingEntity) {
-        return livingEntity.isHolding(stack -> stack.getItem() instanceof BowItem);
+//    GECKOLIB STUFF
+    @Override
+    public void registerControllers(AnimatableManager.ControllerRegistrar controllers) {
+        controllers.add(new AnimationController<>(this, "controller", 5, this::predicate));
+    }
+
+    private PlayState predicate(AnimationState<TestBossEntity> testBossEntityAnimationState) {
+        if(testBossEntityAnimationState.isMoving()) {
+            testBossEntityAnimationState.getController().setAnimation(RawAnimation.begin().then("animation.test_boss.walk", Animation.LoopType.LOOP));
+            return PlayState.CONTINUE;
+        }
+
+        testBossEntityAnimationState.getController().setAnimation(RawAnimation.begin().then("animation.test_boss.stand", Animation.LoopType.LOOP));
+        return PlayState.CONTINUE;
+    }
+
+
+    @Override
+    public AnimatableInstanceCache getAnimatableInstanceCache() {
+        return geoCache;
     }
 }

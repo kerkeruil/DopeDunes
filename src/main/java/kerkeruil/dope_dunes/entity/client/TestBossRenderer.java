@@ -8,24 +8,26 @@ import net.minecraft.client.render.entity.EntityRendererFactory;
 import net.minecraft.client.render.entity.MobEntityRenderer;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.util.Identifier;
+import software.bernie.geckolib.renderer.GeoEntityRenderer;
 
-public class TestBossRenderer extends MobEntityRenderer<TestBossEntity, TestBossModel<TestBossEntity>> {
-    private static final Identifier TEXTURE = new Identifier(DopeDunes.MOD_ID, "textures/entity/test_boss.png");
-    private static float sizeMultiplier = 1.5f;
-    public TestBossRenderer(EntityRendererFactory.Context ctx) {
-        super(ctx, new TestBossModel<>(ctx.getPart(ModModelLayers.TEST_BOSS)), 0.6f);
+public class TestBossRenderer extends GeoEntityRenderer<TestBossEntity> {
+    public TestBossRenderer(EntityRendererFactory.Context renderManager) {
+        super(renderManager, new TestBossModel());
     }
 
     @Override
-    public Identifier getTexture(TestBossEntity entity) {
-        return TEXTURE;
+    public Identifier getTextureLocation(TestBossEntity animatable) {
+        return new Identifier(DopeDunes.MOD_ID, "textures/entity/test_boss.png");
     }
 
     @Override
-    public void render(TestBossEntity livingEntity, float f, float g, MatrixStack matrixStack,
-                       VertexConsumerProvider vertexConsumerProvider, int i) {
-        matrixStack.scale(sizeMultiplier, sizeMultiplier, sizeMultiplier);
+    public void render(TestBossEntity entity, float entityYaw, float partialTick, MatrixStack poseStack,
+                       VertexConsumerProvider bufferSource, int packedLight) {
+        //TODO useless but maybe a good example?
+        if(entity.isBaby()) {
+            poseStack.scale(0.4f, 0.4f, 0.4f);
+        }
 
-        super.render(livingEntity, f, g, matrixStack, vertexConsumerProvider, i);
+        super.render(entity, entityYaw, partialTick, poseStack, bufferSource, packedLight);
     }
 }
